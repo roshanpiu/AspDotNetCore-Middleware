@@ -17,7 +17,7 @@ namespace WebApplication
         {
             loggerFactory.AddConsole();
 
-            app.UseMiddleware<RequestTimerMiddleware>();
+            app.UseRequestTimer();
 
             app.Run(async (context) => 
                 await context.Response.WriteAsync("Hello World")
