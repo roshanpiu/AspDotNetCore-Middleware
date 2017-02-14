@@ -17,7 +17,13 @@ namespace WebApplication
         {
             loggerFactory.AddConsole();
 
-            app.UseRequestTimer();
+            //UseRequestTimer Middleware can be used without options
+            //app.UseRequestTimer();
+
+            app.UseRequestTimer(new RequestTimerOptions
+            {
+                Format = (context, elapsed) => $"Request {context.Request.Path} took {elapsed} ms"
+            });
 
             app.Run(async (context) => 
                 await context.Response.WriteAsync("Hello World")
